@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package anis.gateway.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "Anis.Template.Grpc.Protos.Client";
+
+service EventsHistory {
+  rpc GetAllAccounts (Request) returns (Response);
+  rpc GetAllCategories (Request) returns (Response);
+  rpc GetAllSubCategories (Request) returns (Response);
+  rpc GetAllCards (Request) returns (Response);
+  rpc GetAllRegions (Request) returns (Response);
+  rpc GetSettings (Request) returns (Response);
+
+  rpc GetSupplierPayments (Request) returns (Response);
+  rpc GetSalesInvocices (Request) returns (Response);
+  rpc GetPurchaseInvoices (Request) returns (Response);
+  rpc GetMoneyTransfers (Request) returns (Response);
+  rpc GetTransactions (Request) returns (Response);
+  rpc GetWallets (Request) returns (Response);
+}
+
+message Request {
+  google.protobuf.Int32Value page = 1;
+  google.protobuf.Int32Value size = 2;
+}
+
+message Response {
+  repeated EventMessage messages = 1;
+  int32 page = 2;
+  int32 size = 3;
+  int32 total = 4;
+}
+
+message EventMessage {
+  string id = 1;
+  google.protobuf.StringValue aggregate_id = 2;
+  string type = 3;
+  int32 version = 4;
+  string data = 5;
+  google.protobuf.Timestamp date_time = 6;
+  int64 sequence = 7;
+}

@@ -1,0 +1,16 @@
+﻿syntax = "proto3";
+
+package anis.template;
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "Anis.Template.Grpc.Protos.Rebuild";
+
+service Rebuild {
+  rpc Rebuild (RebuildRequest) returns (google.protobuf.Empty);
+}
+
+message RebuildRequest {
+	int32 page = 1;
+	int32 size = 2;
+}
